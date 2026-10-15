@@ -564,47 +564,7 @@ event connection_state_remove(c: connection)
    zeekctl check
    zeekctl deploy
    ```
-
-
-
-
----
-
-## Editorial Review — Cross-File Scope and Validation Gaps
-
-### Supplied file inventory
-
-| Supplied file | Role established by its content | Editorial use |
-|---|---|---|
-| `Pasted text(2).txt` | Research paper with appended blue-team detection discussion and signature examples | Primary manuscript |
-| `Anti-Forensic-Research-1-3.txt` | Original technical requirements and proposed automation specification | Intent / requirements, **not** implementation evidence |
-| `Anti-Forensic-Research-2-3.txt` | PowerShell deployment implementation excerpt, including configuration and phase logic | Source-code claims, **not** executed-test evidence |
-| `Anti-Forensic-Research-3-3.txt` | Operator README, defaults, verification and recovery claims | Operational documentation; several statements require correction |
-| `Anti-Forensic-Research-4-3.txt` | Architecture guide, persistence assumptions, triggers and limitations | Design rationale and known caveats |
-
-### Priority corrections and research qualifications
-
-| Priority | Finding | Recommended disposition |
-|---|---|---|
-| Critical | The paper calls the workstation **completely stateless** and describes a **pristine disk** after a crash. Neither is established by the supplied sources. | Describe UWF as a protected-volume write-redirection mechanism; test exclusions, other volumes, boot/EFI writes, servicing, and external records before making persistence claims. |
-| Critical | The source defaults include disabled Windows Event Log, licensing services, evidence alteration, forged manifests, disruptive archive payloads, and automatic crash responses. | Separate these as **adversarial behaviors under study**, not a supported enterprise security baseline. Do not enable them in production. |
-| High | The claim that a RAM allocation or hard bugcheck **purges RAM** is unproven; a forced stop does not certify sanitization. | Remove guarantees of memory erasure and data irrecoverability; require independent measurement. |
-| High | The operator guide claims a deny-only WDAC policy **cannot lock you out**, while the architecture guide acknowledges broad wildcard lockout risk. | Treat WDAC compatibility as unverified; require isolated audit testing and documented rollback. |
-| High | The research paper's **88% efficacy** and **12% gap** are not tied to a reproducible dataset, denominator, measurement protocol, or uncertainty bounds. | Label the figure a subjective estimate or remove it until test methodology and evidence exist. |
-| High | The source implies `Get-Disk` serials, SMART deltas, network traits, and window titles provide reliable detection. | Treat these as heuristic signals with false-positive and coverage limitations. |
-| High | Phase 10 placement and the timing of WDAC audit/enforcement differ in description between the process guide, flowchart, and script narrative. | Define one verified state machine with explicit reboot gates, preconditions, postconditions, and failure states before publication as implemented behavior. |
-| High | The main paper appends Suricata and Zeek examples with syntax and behavioral assumptions that have not been tested here. | Label as **unvalidated illustrative research**, not production-ready detection content; verify independently in a lab. |
-| Medium | Hardware identity changes are described as spoofing; the architecture guide separately acknowledges firmware UUID limitations. | Distinguish registry-visible descriptors from firmware-backed hardware identity; avoid asserting effective spoofing. |
-| Medium | Several sections equate UWF with hardware-level forensic elimination. | Replace categorical language with bounded, testable hypotheses. |
-| Medium | Australian legislative discussion cites statutory provisions but lacks a dated legal source analysis. | Retain as issue spotting, not legal advice; verify exact provisions and jurisdiction-specific application with counsel. |
-| Medium | The source material contains differing descriptions of ZIP expansion size and ratio. | Avoid quantitative claims until validated in a resource-limited lab; do not deploy disruptive payloads. |
-
-### Evidence and publication criteria
-
-For a defensible enterprise research publication, every claimed control should have a **source-code reference, OS/build and SKU, test method, expected outcome, actual result, rollback procedure, and independent reviewer**. Until those records exist, distinguish **proposed**, **implemented in supplied code**, and **verified by test**; the supplied documents alone establish the first two categories only.
-
-The paper should also explicitly state that **forensic resistance is not equivalent to security compliance**: tampering with logging, obstructing incident response, or destroying evidence may conflict with operational, contractual, and legal obligations. Prefer a separate, approved Windows kiosk/statelessness research track using UWF with intact event logging and recoverability.
-
+   
 ---
 
 # Research References, Validation Environment & Controlled Disclosure
